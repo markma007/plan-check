@@ -24,12 +24,19 @@ export function addPlan (qclState, planData) {
         planData['setupNote'] = ''
         qclState.tasks[key] = planData
         qclState.current = planData
+        console.log('current reset to:', key);
+        console.log('Current :=', qclState.current);
     }
 }
 
 export function resetTaskByKey (qclState, key) {
+  if (key==="####NULL####") {
+    qclState.current = null
+  } else {
     qclState.current = qclState.tasks[key]
-    console.log(qclState.current);
+  }
+  console.log('current reset to:', key);
+  console.log('Current :=', qclState.current);
 }
 
 export function updateSetupNote (qclState, note) {

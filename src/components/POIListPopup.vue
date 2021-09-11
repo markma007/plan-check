@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, watch } from "vue";
 import { useStore } from 'vuex';
 
 import PopupWrapper from "./PopupWrapper.vue";
@@ -18,15 +18,24 @@ export default defineComponent({
   },
   setup() {
     const $store = useStore()
-    const npoi = computed({
+    let npoi = computed({ // number of POI as String
       get: () => {
-        if ($store.state.qcl.current === null) {
-          return 0
-        } else {
-          return $store.state.qcl.current.Plan.POIs.length
+        let n = 0
+        if ($store.state.qcl.current) {
+          n = $store.state.qcl.current.Plan.POIs.length
         }
+        return n.toString()
+      },
+      set: val => {
+        npoi = val;
       }
     })
+    watch(
+        () => $store.state.qcl.current,
+        (newVal, _) => {
+          let n = newVal ? newVal.Plan.POIs.length : 0
+          npoi = n.toString()
+      })
     return {
       npoi
     };

@@ -3,10 +3,7 @@
       <div class="q-ma-md">
         Plan information
       </div>
-      <div v-if="inactive">
-          Empty
-      </div>
-      <div v-if="!inactive" class="q-ma-md q-gutter-sm">
+      <div class="q-ma-md q-gutter-sm">
           <div>
               Patient: <span>{{planinfo.LastName}}, {{planinfo.FirstName}}</span>
           </div>
@@ -50,7 +47,7 @@ export default defineComponent({
       const $store = useStore()
       let current = $store.state.qcl.current
       let inactive = ref(current===null)
-      let planinfo = ref({
+      const defaultVal = {
           LastName: 'Last',
           FirstName: 'First',
           PatientName: 'First, Last',
@@ -58,7 +55,8 @@ export default defineComponent({
           PlanName: 'nXXXX',
           Planner: 'Planer',
           Physician: 'Physician'
-      })
+      }
+      let planinfo = ref(defaultVal)
       if (current) {
           planinfo.value = current.Plan.PlanInfo
       }
@@ -67,7 +65,7 @@ export default defineComponent({
         () => $store.state.qcl.current,
         (newVal, _) => {
           inactive.value = newVal === null
-          planinfo.value = newVal.Plan.PlanInfo
+          planinfo.value = newVal ? newVal.Plan.PlanInfo : defaultVal
       })
 
       function showAlert () {

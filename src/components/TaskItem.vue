@@ -37,7 +37,7 @@ export default defineComponent({
 
     function onSelect (event) {
       let key = props.mrn + '-' + props.planName
-      $q.notify('Current set to ' + key)
+      // $q.notify('Current set to ' + key)
       $store.dispatch('qcl/reset_current_task', key)
     }
     return {

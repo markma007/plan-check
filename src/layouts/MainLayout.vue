@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quick Check
+          Quick Plan Check
         </q-toolbar-title>
 
         <div class="q-mr-sm">
@@ -39,10 +39,11 @@
           <my-dialog/>
           <hr>
           <task-list/>
+          <reset-button />
           <hr>
-          <div class="bg-grey" style="width:50%;height:50px;"></div>
+          <div class="bg-grey" style="width:40%;height:50px;"></div>
           <hr>
-          <div class="bg-grey" style="width:50%;height:50px;"></div>
+          <div class="bg-grey" style="width:40%;height:50px;"></div>
       </div>
       <div class="flex flex-center fixed-bottom q-mb-md">
           <q-btn to="templates" label="Templates" style="min-width: 260px"></q-btn>
@@ -71,14 +72,15 @@ import { useQuasar } from 'quasar'
 import TaskList from 'components/TaskList.vue'
 import MyDialog from 'components/MyDialog.vue'
 import { defineComponent, ref, watch } from 'vue'
-import POIListPopup from 'src/components/POIListPopup.vue'
+import POIListPopup from 'components/POIListPopup.vue'
+import ResetButton from 'components/ResetButton.vue'
 // import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    TaskList, MyDialog, POIListPopup
+    TaskList, MyDialog, POIListPopup, ResetButton
   },
 
   setup () {

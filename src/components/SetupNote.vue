@@ -21,8 +21,8 @@ export default defineComponent({
           '')
     watch(
         ()=>$store.state.qcl.current,
-        (newVal, old) => {
-            text.value = newVal.setupNote
+        (newVal, _) => {
+            text.value = newVal ? newVal.setupNote : ''
         }
     )
     function onTextChange(t) {

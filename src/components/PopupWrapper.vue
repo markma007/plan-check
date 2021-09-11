@@ -3,8 +3,8 @@
 <template>
   <div>
     <q-btn :label="title" @click="popUp = true">
-      <div v-if="badge >= 0">
-        &nbsp;&nbsp;<q-badge>{{ badge }}</q-badge>
+      <div v-if="parseInt(badge) >= 0">
+        &nbsp;&nbsp;<q-badge rounded color="green">{{ badge }}</q-badge>
       </div>
     </q-btn>
     <q-dialog v-model="popUp">
@@ -21,7 +21,7 @@ export default defineComponent({
   components: {},
   props: {
     title: { type: String, required: true },
-    badge: { type: Number, require: false, default: -1 },
+    badge: { type: String, require: false, default: "-1" },
   },
   data() {
     return {
