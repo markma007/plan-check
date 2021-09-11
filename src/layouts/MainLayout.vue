@@ -34,10 +34,15 @@
         <q-toggle v-model="darkTheme" label="Dark theme"></q-toggle>
       </div>
 
-      <div class="flex flex-center">
-          <POIList />
-          <div><my-dialog /></div>
-          <div><task-list /></div>
+      <div class="flex flex-center q-ma-sm q-gutter-sm">
+          <POIListPopup/>
+          <my-dialog/>
+          <hr>
+          <task-list/>
+          <hr>
+          <div class="bg-grey" style="width:50%;height:50px;"></div>
+          <hr>
+          <div class="bg-grey" style="width:50%;height:50px;"></div>
       </div>
       <div class="flex flex-center fixed-bottom q-mb-md">
           <q-btn to="templates" label="Templates" style="min-width: 260px"></q-btn>
@@ -65,15 +70,15 @@ import { useQuasar } from 'quasar'
 // import { useStore } from 'vuex'
 import TaskList from 'components/TaskList.vue'
 import MyDialog from 'components/MyDialog.vue'
-import POIList from '../components/POIList.vue'
 import { defineComponent, ref, watch } from 'vue'
+import POIListPopup from 'src/components/POIListPopup.vue'
 // import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    TaskList, MyDialog, POIList
+    TaskList, MyDialog, POIListPopup
   },
 
   setup () {

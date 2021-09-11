@@ -9,6 +9,8 @@
         Oops. Nothing here...
       </div>
 
+      <POIListPopup />
+
       <q-btn
         class="q-mt-xl"
         color="white"
@@ -24,8 +26,12 @@
 
 <script>
 import { defineComponent } from 'vue'
+import POIListPopup from 'src/components/POIListPopup.vue'
 
 export default defineComponent({
-  name: 'Settings'
+  name: 'Settings',
+  components: {
+    POIListPopup
+  }
 })
 </script>

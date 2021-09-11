@@ -1,6 +1,5 @@
 <template>
   <q-page class="q-pa-md fit items-stretch">
-    
       <div class="fit row items-stretch">
         <div class="col-9">
           <setup-note />

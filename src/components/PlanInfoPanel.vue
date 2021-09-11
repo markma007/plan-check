@@ -6,7 +6,7 @@
       <div v-if="inactive">
           Empty
       </div>
-      <div v-if="!inactive" class="q-ma-md">
+      <div v-if="!inactive" class="q-ma-md q-gutter-sm">
           <div>
               Patient: <span>{{planinfo.LastName}}, {{planinfo.FirstName}}</span>
           </div>
@@ -22,13 +22,12 @@
           <div>
               Planner: {{planinfo.Planner}}
           </div>
-          <q-space></q-space>
+          <q-space dir="vertical"></q-space>
           <br>
-          <q-btn label="Points of Interest"/>
+          <shifts-popup />
+          <POIListPopup />
           <br>
-          <q-btn color="deep-orange" @click="showAlert" style="display:block;">
-              Pre-Check
-          </q-btn>
+          <q-btn color="deep-orange" label="Start Check" @click="showAlert"/>
       </div>
   </div>
 </template>
@@ -38,8 +37,14 @@ import { defineComponent, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { useQuasar } from 'quasar'
 
+import ShiftsPopup from './ShiftPopup.vue'
+import POIListPopup from 'src/components/POIListPopup.vue'
+
 export default defineComponent({
   name: 'PlanInfoPanel',
+  components: {
+    ShiftsPopup, POIListPopup
+  },
   setup() {
       const $q =useQuasar()
       const $store = useStore()
@@ -59,7 +64,7 @@ export default defineComponent({
       }
 
       watch(
-        () => $store.state.qcl.current, 
+        () => $store.state.qcl.current,
         (newVal, _) => {
           inactive.value = newVal === null
           planinfo.value = newVal.Plan.PlanInfo
@@ -74,7 +79,7 @@ export default defineComponent({
                   type: 'text'
               },
               cancel: true,
-              persistent: true              
+              persistent: true
           }).onOk((data)=>{
               console.log('ok', data);
           }).onCancel(()=>{

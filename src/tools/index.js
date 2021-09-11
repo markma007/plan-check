@@ -2,6 +2,7 @@
 let $store;
 
 const onPlanDataLoaded = (planPath, RcData, MqData, Plan) => {
+  console.log(Plan);
   $store.dispatch('qcl/add_new_plan', {planPath, RcData, MqData, Plan})
 }
 
